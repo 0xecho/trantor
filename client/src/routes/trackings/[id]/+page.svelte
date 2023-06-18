@@ -5,6 +5,7 @@
 	import { invalidateAll } from '$app/navigation';
 	import Map from '$lib/components/Map.svelte';
 	import NoData from '$lib/components/NoData.svelte';
+	import { fetchApi } from '$lib/fetch';
 
 	export let data: PageData;
 
@@ -17,7 +18,7 @@
 
 		const authToken = getAuthToken();
 
-		const res = await fetch(`/admin/trackings/${$page.params.id}/sources`, {
+		const res = await fetchApi(`/admin/trackings/${$page.params.id}/sources`, {
 			method: 'POST',
 			headers: {
 				Authorization: `Basic ${authToken}`,
@@ -40,7 +41,7 @@
 
 		const authToken = getAuthToken();
 
-		const res = await fetch(`/admin/trackings/${$page.params.id}/sources/${name}`, {
+		const res = await fetchApi(`/admin/trackings/${$page.params.id}/sources/${name}`, {
 			method: 'DELETE',
 			headers: {
 				Authorization: `Basic ${authToken}`

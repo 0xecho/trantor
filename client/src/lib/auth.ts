@@ -1,4 +1,5 @@
 import { redirect } from '@sveltejs/kit';
+import { fetchApi } from './fetch';
 
 type AuthState = {
 	userId: string;
@@ -40,7 +41,7 @@ export async function authenticate(
 ) {
 	const token = btoa(`${userId}:${secretCode}`);
 
-	const res = await fetch('/admin/authenticate', {
+	const res = await fetchApi('/admin/authenticate', {
 		method: 'POST',
 		headers: {
 			Authorization: `Basic ${token}`

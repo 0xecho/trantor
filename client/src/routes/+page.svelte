@@ -5,6 +5,7 @@
 	import { getAuthToken } from '$lib/auth';
 	import { invalidateAll } from '$app/navigation';
 	import { pluralized } from '$lib/utils';
+	import { fetchApi } from '$lib/fetch';
 
 	export let data: PageData;
 
@@ -15,7 +16,7 @@
 
 		const authToken = getAuthToken();
 
-		const res = await fetch('/admin/trackings', {
+		const res = await fetchApi('/admin/trackings', {
 			method: 'POST',
 			headers: {
 				Authorization: `Basic ${authToken}`,

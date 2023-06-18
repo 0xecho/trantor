@@ -1,11 +1,13 @@
 import type { PageLoad } from './$types';
 import { getAuthToken } from '$lib/auth';
 import { TrackingCounts } from '$lib/schema';
+import { customFetchApi } from '$lib/fetch';
 
 export const load = (async ({ params, fetch }) => {
 	const authToken = getAuthToken();
+	const fetchApi = customFetchApi(fetch);
 
-	const res = await fetch(`/admin/trackings/${params.id}/counts`, {
+	const res = await fetchApi(`/admin/trackings/${params.id}/counts`, {
 		headers: {
 			Authorization: `Basic ${authToken}`
 		}

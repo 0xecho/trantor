@@ -2,6 +2,7 @@
 	import { goto, invalidateAll } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { getAuthToken } from '$lib/auth';
+	import { fetchApi } from '$lib/fetch';
 
 	async function deleteTracking() {
 		const confirmed = confirm('Are you sure you want to delete this tracking?');
@@ -9,7 +10,7 @@
 
 		const authToken = getAuthToken();
 
-		const res = await fetch(`/admin/trackings/${$page.params.id}`, {
+		const res = await fetchApi(`/admin/trackings/${$page.params.id}`, {
 			method: 'DELETE',
 			headers: {
 				Authorization: `Basic ${authToken}`
@@ -30,7 +31,7 @@
 
 		const authToken = getAuthToken();
 
-		const res = await fetch(`/admin/trackings/${$page.params.id}/name`, {
+		const res = await fetchApi(`/admin/trackings/${$page.params.id}/name`, {
 			method: 'PATCH',
 			headers: {
 				Authorization: `Basic ${authToken}`,
